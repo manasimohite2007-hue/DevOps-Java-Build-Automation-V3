@@ -26,3 +26,14 @@ pipeline {
         }
     }
 }
+stage('Docker Build') {
+    steps {
+        bat 'docker build -t java-cicd-pipeline .'
+    }
+}
+
+stage('Docker Run') {
+    steps {
+        bat 'docker run --rm java-cicd-pipeline'
+    }
+}
