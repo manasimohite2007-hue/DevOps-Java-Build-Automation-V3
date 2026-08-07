@@ -7,9 +7,11 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/manasimohite2007-hue/DevOps-Java-Build-Automation-V3.git'
+                git branch: 'master',
+                    url: 'https://github.com/manasimohite2007-hue/DevOps-Java-Build-Automation-V3.git'
             }
         }
 
@@ -24,16 +26,17 @@ pipeline {
                 bat 'mvn test'
             }
         }
-    }
-}
-stage('Docker Build') {
-    steps {
-        bat 'docker build -t java-cicd-pipeline .'
-    }
-}
 
-stage('Docker Run') {
-    steps {
-        bat 'docker run --rm java-cicd-pipeline'
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t java-cicd-pipeline .'
+            }
+        }
+
+        stage('Docker Run') {
+            steps {
+                bat 'docker run --rm java-cicd-pipeline'
+            }
+        }
     }
 }
